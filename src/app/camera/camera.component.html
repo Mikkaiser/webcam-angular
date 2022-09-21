@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <div *ngIf="isCameraExists; else noCameraExists">
+    <div style="text-align: center">
+      <div class="btn-group">
+        <button
+          type="button"
+          (click)="takeSnapshot()"
+          class=""
+          type="button"
+          class="btn btn-primary"
+        >
+          Take picture
+        </button>
+      </div>
+      <webcam
+        [height]="500"
+        [width]="1000"
+        [trigger]="triggerObservable"
+        (imageCapture)="handleImage($event)"
+        *ngIf="showWebcam"
+        [switchCamera]="nextWebcamObservable"
+      ></webcam>
+    </div>
+  </div>
+</div>
+
+<ng-template #noCameraExists>Camera device not Available</ng-template>
